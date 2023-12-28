@@ -1,0 +1,19 @@
+parameters:
+- name: imageToDeploy
+  type: string
+- name: dockerImageTag
+  type: string
+- name: azureSubscription
+  type: string
+- name: resourceGroup
+  type: string
+- name: containerAppName
+  type: string  
+
+steps:
+  - task: AzureContainerApps@1
+    inputs:
+      azureSubscription: ${{ parameters.azureSubscription }}
+      containerAppName: ${{ parameters.containerAppName }}
+      resourceGroup: ${{ parameters.resourceGroup }}
+      imageToDeploy: ${{ parameters.imageToDeploy }}:${{ parameters.dockerImageTag }}
