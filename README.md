@@ -12,6 +12,8 @@ This template provides a streamlined way to deploy a containerized application t
 
 ## Usage
 
+To use this template, include the following YAML snippet in your Azure Pipelines:
+
 ```yaml
 resources:
   repositories:
@@ -32,3 +34,24 @@ jobs:
         resourceGroup: <name of resource group of container app>
         containerAppName: <your container app name>
 ```
+Make sure to replace the placeholders (<...>) with your specific values.
+
+## Steps
+
+**Azure Container Apps Deployment:** This step utilizes the AzureContainerApps task to deploy the specified Docker image to Azure Container Apps.<br> It requires the Azure subscription, resource group, container app name, and the fully qualified image name with the specified tag.
+
+```yaml
+- task: AzureContainerApps@1
+  inputs:
+    azureSubscription: ${{ parameters.azureSubscription }}
+    containerAppName: ${{ parameters.containerAppName }}
+    resourceGroup: ${{ parameters.resourceGroup }}
+    imageToDeploy: ${{ parameters.imageToDeploy }}:${{ parameters.dockerImageTag }}
+```
+
+## Notes
+
+- Ensure that the necessary Azure service connection (**ServiceConnectionForgitHub**) is set up in your Azure Pipelines project.<br>
+- Customize the repository and branch information in the resources section according to your GitHub repository setup.<br>
+
+Adapt and extend this template to suit your specific deployment needs.
