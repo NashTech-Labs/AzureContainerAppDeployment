@@ -20,7 +20,7 @@ resources:
     - repository: exampleApp
       type: github
       name: GitHubUserName/repoName
-      ref: 'respective-branch-name'            //branch where your template exists
+      ref: 'respective-branch-name'            
       endpoint: 'ServiceConnectionForgitHub'
  
 jobs:
